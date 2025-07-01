@@ -56,6 +56,7 @@ public class WestminsterHotelManager implements HotelManager {
         System.out.println("To Generate Staff Report, press 20");
         System.out.println("To Sort Guest by Nights Stayed, press 21");
         System.out.println("To Show Staff Birthdays This Month, press 22"); 
+        System.out.println("To View Room Type summary, press 23");
         Scanner s = new Scanner(System.in);
         int choice = s.nextInt();
 
@@ -128,6 +129,9 @@ public class WestminsterHotelManager implements HotelManager {
                 break;
             case 22:
                 this.showBirthdaysThisMonth();
+                break;
+            case 23:
+                this.showGuestRoomTypesSummary();
                 break;
 
         }
@@ -515,5 +519,20 @@ public class WestminsterHotelManager implements HotelManager {
         if(!any){
             System.out.println("No birthdays this month.");
         }
+    }
+
+    public void showGuestRoomTypesSummary(){
+        int standard = 0,deluxe = 0, suite=0;
+        for (Guest g : hotelGuestList){
+            int room = g.getRoomNumber();
+            if(room<=50)standard++;
+            else if(room<=75)deluxe++;
+            else suite++;
+            
+        }
+        System.out.println("Room Type Summary:");
+        System.out.println("Standard Rooms (1-50):"+standard);
+        System.out.println("Deluxe Rooms (51-75): " + deluxe); 
+        System.out.println("Suite Rooms (76-100): " + suite); 
     }
 }
