@@ -55,6 +55,7 @@ public class WestminsterHotelManager implements HotelManager {
         System.out.println("To Search Guest by Room Number, press 19");
         System.out.println("To Generate Staff Report, press 20");
         System.out.println("To Sort Guest by Nights Stayed, press 21");
+        System.out.println("To Show Staff Birthdays This Month, press 22"); 
         Scanner s = new Scanner(System.in);
         int choice = s.nextInt();
 
@@ -125,6 +126,10 @@ public class WestminsterHotelManager implements HotelManager {
             case 21:
                 this.sortGuestByNights();
                 break;
+            case 22:
+                this.showBirthdaysThisMonth();
+                break;
+
         }
         return exit;
     }
