@@ -63,6 +63,12 @@ public class WestminsterHotelManager implements HotelManager {
 
         switch (choice) {
             case 0:
+                System.out.println("Do you want to save before exiting? (yes/no)"); 
+                String save = s.next(); 
+                if (save.equalsIgnoreCase("yes")) { 
+                    saveStaffToFile(); 
+                    saveGuestToFile(); 
+                } 
                 exit = true;
                 break;
             case 1:
