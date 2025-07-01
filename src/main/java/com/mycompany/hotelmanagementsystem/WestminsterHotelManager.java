@@ -57,6 +57,7 @@ public class WestminsterHotelManager implements HotelManager {
         System.out.println("To Sort Guest by Nights Stayed, press 21");
         System.out.println("To Show Staff Birthdays This Month, press 22"); 
         System.out.println("To View Room Type summary, press 23");
+        System.out.println("To Export Guest List to HTML, press 24");
         Scanner s = new Scanner(System.in);
         int choice = s.nextInt();
 
@@ -132,6 +133,9 @@ public class WestminsterHotelManager implements HotelManager {
                 break;
             case 23:
                 this.showGuestRoomTypesSummary();
+                break;
+            case 24:
+                this.exportGuestListToHTML();
                 break;
 
         }
@@ -535,4 +539,19 @@ public class WestminsterHotelManager implements HotelManager {
         System.out.println("Deluxe Rooms (51-75): " + deluxe); 
         System.out.println("Suite Rooms (76-100): " + suite); 
     }
+
+    public void exportGuestListToHTML() { 
+        try (PrintWriter writer = new PrintWriter("guests.html")) { 
+            writer.println("<html><body><h2>Guest List</h2><table border='1'>"); 
+            writer.println("<tr><th>Name</th><th>Surname</th><th>Room</th><th>Nights</th></tr>"); 
+            for (Guest g : hotelGuestList) { 
+                writer.printf("<tr><td>%s</td><td>%s</td><td>%d</td><td>%d</td></tr>%n", 
+                    g.getName(), g.getSurname(), g.getRoomNumber(), g.getNightsStayed()); 
+            } 
+            writer.println("</table></body></html>"); 
+            System.out.println("Guest list exported to guests.html"); 
+        } catch (IOException e) { 
+            System.out.println("Error writing HTML file: " + e.getMessage()); 
+        } 
+    } 
 }
